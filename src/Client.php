@@ -2,11 +2,14 @@
 
 namespace Dmn\Txtbox;
 
+use Dmn\Txtbox\Traits\Testable;
 use Dmn\Txtbox\Txtbox;
 use GuzzleHttp\Client as HttpClient;
 
 class Client implements Txtbox
 {
+    use Testable;
+
     protected $httpClient;
 
     protected string $baseUri;

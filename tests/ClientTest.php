@@ -40,28 +40,6 @@ class ClientTest extends TestCase
     }
 
     /**
-     * Mock response
-     *
-     * @param array $response
-     * @param int $status
-     * @param array $headers
-     *
-     * @return void
-     */
-    protected function mockResponse(
-        array $response,
-        int $status = 200,
-        array $headers = []
-    ): void {
-        $mock = new MockHandler([
-            new Response($status, $headers, json_encode($response)),
-        ]);
-        $handlerStack = HandlerStack::create($mock);
-
-        $this->app['config']->set('txtbox.guzzle', ['handler' => $handlerStack]);
-    }
-
-    /**
      * @test
      * @testdox Dependency
      *
@@ -80,11 +58,7 @@ class ClientTest extends TestCase
      */
     public function sendSuccess(): void
     {
-        $this->mockResponse(json_decode(
-            file_get_contents(__DIR__ . '/Responses/send_success.json'),
-            true
-        ));
-
+        Client::mockResponse();
         $response = $this->service()->send(
             '09661231231',
             'test message'
@@ -101,10 +75,7 @@ class ClientTest extends TestCase
      */
     public function sendSmsViaChannel(): void
     {
-        $this->mockResponse(json_decode(
-            file_get_contents(__DIR__ . '/Responses/send_success.json'),
-            true
-        ));
+        Client::mockResponse();
 
         $notification = Notification::send([[
             'mobile_number' => '09661231231',
