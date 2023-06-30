@@ -25,11 +25,11 @@ trait Testable
         bool $isFullPath = false
     ): void {
         if ($isFullPath === false) {
-            $file = __DIR__ . '../../tests/Reponses' . $file;
+            $file = __DIR__ . '/../../tests/Responses/' . $file;
         }
 
         $mock = new MockHandler([
-            new Response($status, $headers, json_encode($file)),
+            new Response($status, $headers, file_get_contents($file)),
         ]);
 
         $handlerStack = HandlerStack::create($mock);
