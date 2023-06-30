@@ -25,5 +25,12 @@
     "require-dev": {
         "phpunit/phpunit": "^10.2",
         "orchestra/testbench": "^8.5"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Dmn\\Txtbox\\ServiceProvider"
+            ]
+        }
     }
 }

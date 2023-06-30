@@ -2,6 +2,7 @@
 
 namespace Dmn\Txtbox;
 
+use Dmn\Txtbox\Txtbox;
 use GuzzleHttp\Client as HttpClient;
 
 class Client implements Txtbox
