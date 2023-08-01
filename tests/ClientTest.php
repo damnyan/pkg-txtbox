@@ -83,4 +83,27 @@ class ClientTest extends TestCase
 
         $this->assertNull($notification);
     }
+
+    /**
+     * @test
+     * @testdox It can notify via channel queue responses
+     *
+     * @return void
+     */
+    public function sendSmsViaChannelQueueResponses(): void
+    {
+        Client::mockQueueResponse([[], []]);
+
+        $notification = Notification::send([[
+            'mobile_number' => '09661231231',
+        ]], new SmsNotification());
+
+        $this->assertNull($notification);
+
+        $notification = Notification::send([[
+            'mobile_number' => '09661231231',
+        ]], new SmsNotification());
+
+        $this->assertNull($notification);
+    }
 }
