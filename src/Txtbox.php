@@ -32,4 +32,12 @@ interface Txtbox
         array $headers = [],
         bool $isFullPath = false
     ): void;
+
+    /**
+     * Mock queue response
+     *
+     * @param string $responses
+     * @return void
+     */
+    public static function mockQueueResponse(array $responses): void;
 }
